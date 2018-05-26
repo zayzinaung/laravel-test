@@ -60,7 +60,7 @@ class UserController extends Controller
         // $user = Auth::user(); user this if in auth:api middleware after api authenticate
         $user_email = 'john@wallet.io';
         $wallet_transcations = Wallet::where('email',$user_email)->with(['transactions' => function ($query) {
-            $query->orderBy('created_at', 'desc')->limit(3);
+            $query->orderBy('created_at', 'desc');
         }])->get();
         return response()->json(['success' => true, 'response' => $wallet_transcations], 200);
     } 
